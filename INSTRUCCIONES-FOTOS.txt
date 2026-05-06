@@ -1,0 +1,42 @@
+CÓMO AGREGAR FOTOS AL PORTAFOLIO
+==================================
+
+1. Guarda tus fotos en ESTA carpeta (assets/)
+   Nombres sugeridos:
+     marriott.jpg
+     tesoro.jpg
+     bh-poblado.jpg
+     kimberly.jpg
+     diamante.jpg
+     altos-progreso.jpg
+
+2. Abre index.html con VS Code o cualquier editor de texto.
+
+3. Busca la sección "PORTAFOLIO" y en cada tarjeta agrega
+   el atributo style a la etiqueta port-visual.
+
+   EJEMPLO — Tarjeta 01 (Hotel Marriott):
+
+   ANTES:
+     <div class="port-visual pv-1">
+
+   DESPUÉS:
+     <div class="port-visual pv-1" style="background-image: url('assets/marriott.jpg')">
+
+   El overlay oscuro se aplica automáticamente — no necesitas
+   cambiar nada más en el CSS.
+
+4. Repite para cada tarjeta con su foto correspondiente.
+
+FORMATOS RECOMENDADOS
+  - JPG o WEBP (mejor rendimiento)
+  - Tamaño ideal: 800×500 px o más ancho
+  - Peso máximo sugerido: 300 KB por foto
+
+TARJETAS Y SUS CLASES
+  01 Hotel Marriott Medellín   → pv-1
+  02 C.C. El Tesoro            → pv-2
+  03 Hotel BH El Poblado       → pv-3
+  04 Kimberly-Clark Colombia   → pv-4
+  05 Torres Diamante I y II    → pv-5
+  06 Altos del Progreso        → pv-6

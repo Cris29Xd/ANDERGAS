@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andergas S.A.S — Gas · Hidráulica · Contra Incendios</title>
+  <meta name="description" content="Andergas S.A.S — 43 años instalando redes hidráulicas, gas y contra incendios en Colombia. Certificados EPM y SENA. +1000 proyectos completados.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root{
+  --bg:#07080f;--bg2:#0b0c18;--bg3:#0f1020;
+  --card:#111224;--card-h:#151634;
+  --orange:#ff5c00;--orange-g:rgba(255,92,0,.14);
+  --orange-glow:rgba(255,92,0,.32);
+  --blue:#0ea5e9;--red:#ef4444;
+  --text:#f0efff;--muted:#6a6a9a;
+  --border:rgba(255,255,255,.07);
+  --radius:14px;--maxw:1180px;--nav:68px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:16px;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}ul{list-style:none}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--orange);border-radius:3px}
+
+#spb{position:fixed;top:0;left:0;height:3px;width:0;z-index:200;background:var(--orange);transition:width .08s linear;box-shadow:0 0 10px var(--orange-glow)}
+
+.nav{position:fixed;top:3px;left:0;right:0;height:var(--nav);z-index:100;transition:background .35s,backdrop-filter .35s,box-shadow .35s}
+.nav.scrolled{background:rgba(7,8,15,.93);backdrop-filter:blur(22px);box-shadow:0 1px 0 var(--border)}
+.nav-wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;gap:32px}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:5px;flex-shrink:0}
+.nav-logo span{color:var(--orange)}
+.nav-links{display:flex;gap:28px;margin-left:auto}
+.nav-links a{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;transition:color .2s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1.5px;background:var(--orange);transition:width .25s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{flex-shrink:0;background:var(--orange);color:#fff;font-size:12px;font-weight:700;padding:9px 22px;border-radius:3px;letter-spacing:.5px;text-transform:uppercase;transition:all .2s;box-shadow:0 0 22px var(--orange-g)}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 28px var(--orange-glow)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;margin-left:auto}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.mobile-nav{display:none;position:fixed;top:var(--nav);left:0;right:0;background:rgba(7,8,15,.97);backdrop-filter:blur(20px);padding:16px 24px;z-index:99;flex-direction:column;gap:4px;border-bottom:1px solid var(--border)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-size:16px;font-weight:500;padding:12px 0;border-bottom:1px solid var(--border);color:var(--muted)}
+.mobile-nav a:last-child{border-bottom:none;color:var(--orange)}
+
+/* ——— HERO ——— */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:var(--nav) 32px 160px;background:var(--bg)}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,92,0,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,92,0,.03) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
+.hero-scanlines{position:absolute;inset:0;pointer-events:none;z-index:1;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.15) 2px,rgba(0,0,0,.15) 4px)}
+.hero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:80px;background:var(--bg3);clip-path:polygon(0 100%,100% 0,100% 100%);z-index:3;pointer-events:none}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.28}
+.hero-inner{position:relative;z-index:2;max-width:var(--maxw);width:100%;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,92,0,.07);border:1px solid rgba(255,92,0,.22);color:var(--orange);font-size:11px;font-weight:700;padding:7px 18px;border-radius:2px;margin-bottom:28px;letter-spacing:2px;text-transform:uppercase}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--orange);box-shadow:0 0 10px var(--orange);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.4)}}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(58px,7.8vw,104px);line-height:.93;letter-spacing:2px;margin-bottom:24px}
+.hero-title .line2{color:var(--orange);display:block;text-shadow:0 0 80px rgba(255,92,0,.45)}
+.hero-sub{font-size:clamp(14px,1.5vw,16px);color:var(--muted);line-height:1.85;margin-bottom:38px;max-width:460px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;padding:13px 28px;border-radius:3px;transition:all .25s;cursor:pointer;border:none;letter-spacing:1px;text-transform:uppercase}
+.btn-p{background:var(--orange);color:#fff;box-shadow:0 0 32px var(--orange-g)}
+.btn-p:hover{transform:translateY(-2px);box-shadow:0 0 52px var(--orange-glow),0 8px 24px rgba(255,92,0,.35)}
+.btn-s{background:transparent;color:var(--text);border:1.5px solid var(--border)}
+.btn-s:hover{border-color:rgba(255,92,0,.4);color:var(--orange);transform:translateY(-2px)}
+.hero-srv-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:30px}
+.hero-srv{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-radius:3px;padding:8px 13px;font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;white-space:nowrap}
+.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.sd-b{background:var(--blue)}.sd-o{background:var(--orange)}.sd-r{background:var(--red)}
+.hero-right{display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.hero-big-stat{background:var(--card);border:1px solid rgba(255,92,0,.18);border-radius:var(--radius);padding:38px 42px;position:relative;overflow:hidden;width:100%}
+.hero-big-stat::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,92,0,.05) 0%,transparent 60%);pointer-events:none}
+.hero-big-n{font-family:'Bebas Neue',sans-serif;font-size:clamp(80px,12vw,140px);line-height:1;color:var(--orange);text-shadow:0 0 50px rgba(255,92,0,.5),0 0 100px rgba(255,92,0,.22);margin-bottom:6px}
+.hero-big-l{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+.hero-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.hms{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:18px;transition:border-color .25s;position:relative;overflow:hidden}
+.hms::before{content:'';position:absolute;top:8px;left:8px;width:0;height:0;border-top:0 solid var(--orange);border-left:0 solid var(--orange);transition:all .3s}
+.hms:hover{border-color:rgba(255,92,0,.22)}
+.hms:hover::before{width:14px;height:14px;border-top-width:1.5px;border-left-width:1.5px}
+.hms-n{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:1px;color:var(--orange);line-height:1;margin-bottom:5px}
+.hms-l{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.5px;text-transform:uppercase}
+
+/* ——— SECTION BASE ——— */
+.sec{padding:110px 32px;position:relative;overflow:hidden}
+.wrap{max-width:var(--maxw);margin:0 auto}
+.label{display:inline-flex;align-items:center;gap:14px;font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;color:var(--orange);text-transform:uppercase;margin-bottom:16px}
+.label::before{content:'';display:block;width:32px;height:1.5px;background:var(--orange);flex-shrink:0}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,4.8vw,64px);line-height:.95;letter-spacing:1px;margin-bottom:18px}
+.sec-desc{font-size:16px;color:var(--muted);line-height:1.8;max-width:620px}
+.sec-deco{position:absolute;right:-10px;top:30px;font-family:'Bebas Neue',sans-serif;font-size:220px;letter-spacing:-5px;line-height:1;color:rgba(255,255,255,.018);pointer-events:none;user-select:none}
+
+/* ——— NOSOTROS ——— */
+.about{background:var(--bg3)}
+.about::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent,var(--orange),transparent)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-features{display:flex;flex-direction:column;gap:14px;margin-top:28px}
+.af{display:flex;align-items:flex-start;gap:12px}
+.af-icon{width:30px;height:30px;border-radius:4px;flex-shrink:0;margin-top:3px;background:rgba(255,92,0,.07);border:1px solid rgba(255,92,0,.18);display:flex;align-items:center;justify-content:center;color:var(--orange)}
+.af strong{display:block;font-weight:600;margin-bottom:2px;font-size:15px}
+.af span{font-size:13px;color:var(--muted)}
+.cert-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.cert-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,92,0,.05);border:1px solid rgba(255,92,0,.16);border-radius:3px;padding:6px 14px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;color:var(--orange)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px 22px;position:relative;overflow:hidden;transition:transform .3s,border-color .3s}
+.stat-card:hover{transform:translateY(-4px);border-color:rgba(255,92,0,.22)}
+.stat-card::before{content:'';position:absolute;top:10px;left:10px;width:0;height:0;border-top:0 solid var(--orange);border-left:0 solid var(--orange);transition:all .3s}
+.stat-card::after{content:'';position:absolute;bottom:10px;right:10px;width:0;height:0;border-bottom:0 solid rgba(255,92,0,.3);border-right:0 solid rgba(255,92,0,.3);transition:all .3s}
+.stat-card:hover::before{width:18px;height:18px;border-top-width:1.5px;border-left-width:1.5px}
+.stat-card:hover::after{width:14px;height:14px;border-bottom-width:1.5px;border-right-width:1.5px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:1px;line-height:1;color:var(--text);margin-bottom:8px}
+.stat-n .accent{color:var(--orange)}
+.stat-text{font-family:'Bebas Neue',sans-serif;font-size:46px;letter-spacing:1px;line-height:1;margin-bottom:8px;color:var(--orange)}
+.stat-l{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
+
+/* ——— MARQUEE ——— */
+.clients{background:var(--bg);padding:0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden}
+.clients-label{text-align:center;padding:36px 32px 0;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:3px;color:rgba(106,106,154,.35)}
+.marquee-wrap{padding:24px 0 36px;position:relative}
+.marquee-wrap::before,.marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+.marquee-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.marquee-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.marquee-track{display:flex;width:max-content;animation:marquee 28s linear infinite}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{display:flex;align-items:center;gap:10px;padding:10px 40px;border-right:1px solid var(--border);font-size:13px;font-weight:600;color:var(--muted);white-space:nowrap;transition:color .2s;letter-spacing:.3px}
+.marquee-item:hover{color:var(--text)}
+.mi-dot{width:4px;height:4px;border-radius:50%;flex-shrink:0;background:var(--orange)}
+
+/* ——— SERVICIOS ——— */
+.services{background:var(--bg3)}
+.services::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:70px;background:var(--bg);clip-path:polygon(0 0,100% 100%,0 100%);z-index:3;pointer-events:none}
+.srv-hdr{text-align:center;margin-bottom:60px}
+.srv-hdr .label{justify-content:center}
+.srv-hdr .label::before{display:none}
+.srv-hdr .sec-desc{margin:0 auto}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.srv-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px 32px 36px;position:relative;overflow:hidden;transition:all .4s}
+.srv-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity .4s}
+.sc-b::before{background:var(--blue)}
+.sc-o::before{background:var(--orange)}
+.sc-r::before{background:var(--red)}
+.srv-card:hover{transform:translateY(-10px);background:var(--card-h);box-shadow:0 32px 80px rgba(0,0,0,.5)}
+.sc-b:hover{border-color:rgba(14,165,233,.22)!important}
+.sc-o:hover{border-color:rgba(255,92,0,.22)!important}
+.sc-r:hover{border-color:rgba(239,68,68,.22)!important}
+.srv-card:hover::before{opacity:1}
+.srv-ghost{position:absolute;right:-16px;bottom:-28px;font-family:'Bebas Neue',sans-serif;font-size:160px;letter-spacing:-2px;color:rgba(255,255,255,.025);line-height:1;pointer-events:none;user-select:none;transition:color .4s}
+.srv-card:hover .srv-ghost{color:rgba(255,255,255,.05)}
+.srv-ico{width:64px;height:64px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+.ico-b{background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.18)}
+.ico-o{background:rgba(255,92,0,.08);border:1px solid rgba(255,92,0,.18)}
+.ico-r{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.18)}
+.srv-card h3{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:1px;margin-bottom:12px}
+.srv-card p{color:var(--muted);font-size:14px;line-height:1.75;margin-bottom:24px}
+.srv-list{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.srv-list li{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
+.srv-list li::before{content:'';width:4px;height:4px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.7}
+.sc-b .srv-list li::before{color:var(--blue)}
+.sc-o .srv-list li::before{color:var(--orange)}
+.sc-r .srv-list li::before{color:var(--red)}
+.srv-norm{font-size:11px;color:rgba(106,106,154,.35);border-top:1px solid var(--border);padding-top:14px;letter-spacing:.5px;font-weight:600}
+
+/* ——— PORTFOLIO ——— */
+.portfolio{background:var(--bg);padding-top:150px}
+.port-hdr{text-align:center;margin-bottom:60px}
+.port-hdr .label{justify-content:center}
+.port-hdr .label::before{display:none}
+.port-hdr .sec-desc{margin:0 auto}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.port-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;position:relative;transition:transform .4s,box-shadow .4s,border-color .4s}
+.port-card:hover{transform:translateY(-8px);box-shadow:0 32px 72px rgba(0,0,0,.5);border-color:rgba(255,92,0,.18)}
+.port-visual{height:200px;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center}
+.port-visual::before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(7,8,15,.97) 0%,rgba(7,8,15,.5) 55%,rgba(7,8,15,.18) 100%)}
+.pv-1{background-color:#0b1d5c}
+.pv-2{background-color:#1c0a00}
+.pv-3{background-color:#071a38}
+.pv-4{background-color:#1c0000}
+.pv-5{background-color:#0d1a38}
+.pv-6{background-color:#07190e}
+.port-num{position:absolute;bottom:-18px;left:14px;font-family:'Bebas Neue',sans-serif;font-size:88px;letter-spacing:-2px;color:rgba(255,255,255,.06);line-height:1;pointer-events:none;z-index:2}
+.port-icon{position:relative;z-index:2}
+.port-year{position:absolute;top:14px;right:14px;z-index:5;background:rgba(7,8,15,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,92,0,.22);border-radius:2px;padding:4px 10px;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;color:var(--orange)}
+.port-body{padding:22px 22px 24px}
+.port-body h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;line-height:1.1;margin-bottom:6px}
+.port-body p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+.port-tags{display:flex;flex-wrap:wrap;gap:6px}
+.port-tag{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:2px}
+.pt-b{background:rgba(14,165,233,.08);color:var(--blue);border:1px solid rgba(14,165,233,.18)}
+.pt-o{background:rgba(255,92,0,.08);color:var(--orange);border:1px solid rgba(255,92,0,.18)}
+.pt-r{background:rgba(239,68,68,.08);color:var(--red);border:1px solid rgba(239,68,68,.18)}
+.port-overlay{position:absolute;inset:0;z-index:4;background:rgba(7,8,15,.95);backdrop-filter:blur(14px);display:flex;flex-direction:column;justify-content:flex-end;padding:26px;transform:translateY(100%);transition:transform .42s cubic-bezier(.25,.46,.45,.94)}
+.port-card:hover .port-overlay{transform:translateY(0)}
+.port-overlay h4{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.5px;margin-bottom:8px}
+.port-overlay p{font-size:13px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+
+/* ——— CTA BAND ——— */
+.cta-band{background:var(--orange);padding:88px 32px;position:relative;overflow:hidden}
+.cta-band::before{content:'43';position:absolute;right:-30px;top:50%;transform:translateY(-50%);font-family:'Bebas Neue',sans-serif;font-size:320px;letter-spacing:-5px;color:rgba(0,0,0,.1);line-height:1;pointer-events:none}
+.cta-inner{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;position:relative;z-index:2;flex-wrap:wrap}
+.cta-text .label{color:rgba(0,0,0,.38)}
+.cta-text .label::before{background:rgba(0,0,0,.3)}
+.cta-text h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,5vw,70px);letter-spacing:1px;line-height:.93;color:#fff}
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:#fff;color:var(--orange);font-size:13px;font-weight:700;padding:16px 36px;border-radius:3px;transition:all .25s;flex-shrink:0;box-shadow:0 8px 32px rgba(0,0,0,.2);text-transform:uppercase;letter-spacing:.8px}
+.btn-cta:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(0,0,0,.3)}
+
+/* ——— POR QUÉ ——— */
+.why{background:var(--bg3)}
+.why-hdr{text-align:center;margin-bottom:60px}
+.why-hdr .label{justify-content:center}
+.why-hdr .label::before{display:none}
+.why-hdr .sec-desc{margin:0 auto}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.why-card{padding:36px 24px;border-radius:var(--radius);border:1px solid var(--border);background:var(--card);transition:all .3s;position:relative;overflow:hidden}
+.why-card:hover{transform:translateY(-6px);border-color:rgba(255,92,0,.2);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.why-card::before{content:'';position:absolute;top:0;left:0;width:0;height:0;border-top:0 solid var(--orange);border-left:0 solid var(--orange);transition:all .3s}
+.why-card:hover::before{width:22px;height:22px;border-top-width:1.5px;border-left-width:1.5px}
+.why-num{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:1px;color:rgba(255,92,0,.12);line-height:1;margin-bottom:16px}
+.why-ico{width:56px;height:56px;border-radius:4px;background:rgba(255,92,0,.06);border:1px solid rgba(255,92,0,.14);display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--orange);transition:all .3s}
+.why-card:hover .why-ico{background:rgba(255,92,0,.1);border-color:var(--orange)}
+.why-card h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;margin-bottom:10px}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.75}
+.why-cert-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:50px}
+.why-cert{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--border);border-radius:4px;padding:12px 20px;font-size:13px;font-weight:600;transition:border-color .25s}
+.why-cert:hover{border-color:rgba(255,92,0,.25)}
+.wcd{width:5px;height:5px;flex-shrink:0;background:var(--orange)}
+
+/* ——— EQUIPO ——— */
+.team{background:var(--bg)}
+.team-hdr{text-align:center;margin-bottom:52px}
+.team-hdr .label{justify-content:center}
+.team-hdr .label::before{display:none}
+.team-hdr .sec-desc{margin:0 auto}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;max-width:780px;margin:0 auto}
+.team-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:36px 32px;display:flex;flex-direction:column;align-items:center;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.team-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--orange);transform:scaleX(0);transition:transform .35s}
+.team-card:hover{transform:translateY(-6px);border-color:rgba(255,92,0,.18);box-shadow:0 24px 60px rgba(0,0,0,.35)}
+.team-card:hover::before{transform:scaleX(1)}
+.team-avatar{width:80px;height:80px;border-radius:4px;background:rgba(255,92,0,.07);border:1px solid rgba(255,92,0,.2);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:2px;color:var(--orange);margin-bottom:18px}
+.team-card h4{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.5px;margin-bottom:4px}
+.team-role{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--orange);margin-bottom:20px}
+.team-contacts{display:flex;flex-direction:column;gap:9px;width:100%}
+.team-contact{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--muted)}
+.team-contact a{color:var(--muted);transition:color .2s}
+.team-contact a:hover{color:var(--orange)}
+.team-contact svg{flex-shrink:0;color:var(--orange);opacity:.6}
+
+/* ——— TESTIMONIOS ——— */
+.testimonials{background:var(--bg3)}
+.test-hdr{text-align:center;margin-bottom:52px}
+.test-hdr .label{justify-content:center}
+.test-hdr .label::before{display:none}
+.test-hdr .sec-desc{margin:0 auto}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.test-card{background:var(--card);border:1.5px dashed rgba(255,255,255,.07);border-radius:var(--radius);padding:34px 26px;position:relative;transition:all .3s;display:flex;flex-direction:column;gap:14px}
+.test-card:hover{border-color:rgba(255,92,0,.18);transform:translateY(-3px)}
+.test-quote{color:var(--orange);opacity:.28;flex-shrink:0}
+.test-text{font-size:14px;color:rgba(106,106,154,.42);line-height:1.8;flex:1;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px;margin-top:6px}
+.test-avatar{width:42px;height:42px;border-radius:3px;flex-shrink:0;background:rgba(255,92,0,.05);border:1.5px dashed rgba(255,92,0,.15);display:flex;align-items:center;justify-content:center}
+.test-name{font-size:13px;font-weight:600;color:rgba(106,106,154,.5)}
+.test-company{font-size:11px;color:rgba(106,106,154,.28);margin-top:1px}
+.test-pill{position:absolute;top:14px;right:14px;background:rgba(255,92,0,.07);border:1px solid rgba(255,92,0,.18);color:var(--orange);font-family:'Bebas Neue',sans-serif;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:2px}
+
+/* ——— CONTACTO ——— */
+.contact{background:var(--bg)}
+.ct-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+.ct-info{display:flex;flex-direction:column;gap:26px}
+.ct-item{display:flex;align-items:flex-start;gap:14px}
+.ct-ico{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:rgba(255,92,0,.06);border:1px solid rgba(255,92,0,.15);display:flex;align-items:center;justify-content:center;color:var(--orange)}
+.ct-item strong{display:block;font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:3px}
+.ct-item a,.ct-item span{font-size:15px;font-weight:500;transition:color .2s}
+.ct-item a:hover{color:var(--orange)}
+.ct-form{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:40px}
+.form-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:1px;margin-bottom:26px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.fg label{font-size:11px;font-weight:700;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.fg input,.fg textarea,.fg select{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:12px 16px;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--orange)}
+.fg textarea{resize:vertical;min-height:110px}
+.fg select option{background:var(--bg2)}
+.form-btn{width:100%;background:var(--orange);color:#fff;font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:700;padding:15px;border:none;border-radius:4px;cursor:pointer;transition:all .25s;box-shadow:0 0 28px var(--orange-g);margin-top:6px;text-transform:uppercase;letter-spacing:.8px}
+.form-btn:hover{transform:translateY(-2px);box-shadow:0 8px 36px var(--orange-glow)}
+
+/* ——— FOOTER ——— */
+.footer{background:#050508;border-top:1px solid var(--border);padding:52px 32px 32px}
+.ft-wrap{max-width:var(--maxw);margin:0 auto}
+.ft-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.ft-brand p{font-size:13px;color:var(--muted);line-height:1.75;max-width:260px;margin-top:12px}
+.ft-col h5{font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:2px;margin-bottom:18px}
+.ft-col ul{display:flex;flex-direction:column;gap:10px}
+.ft-col ul a{font-size:13px;color:var(--muted);transition:color .2s}
+.ft-col ul a:hover{color:var(--text)}
+.ft-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-bottom p{font-size:12px;color:var(--muted)}
+.ft-bottom a{color:var(--orange)}
+
+.wa-float{position:fixed;bottom:28px;right:28px;width:56px;height:56px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;z-index:99;box-shadow:0 4px 22px rgba(37,211,102,.38);transition:transform .25s,box-shadow .25s;animation:waf 3s ease-in-out infinite}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 8px 32px rgba(37,211,102,.5);animation:none}
+@keyframes waf{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+.rv{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.rv-l{opacity:0;transform:translateX(-48px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.rv-r{opacity:0;transform:translateX(48px);transition:opacity .7s cubic-bezier(.25,.46,.45,.94),transform .7s cubic-bezier(.25,.46,.45,.94)}
+.rv.on,.rv-l.on,.rv-r.on{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.1s}[data-d="2"]{transition-delay:.2s}[data-d="3"]{transition-delay:.3s}[data-d="4"]{transition-delay:.4s}[data-d="5"]{transition-delay:.5s}[data-d="6"]{transition-delay:.6s}
+
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;text-align:center}
+  .hero-left{display:flex;flex-direction:column;align-items:center}
+  .hero-sub{max-width:100%}
+  .hero-right{align-items:center;width:100%}
+  .hero-big-stat{max-width:400px}
+  .srv-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .port-grid{grid-template-columns:1fr 1fr}
+  .test-grid{grid-template-columns:1fr 1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .about-grid,.ct-grid{grid-template-columns:1fr;gap:48px}
+  .srv-grid,.port-grid,.test-grid{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr;gap:28px}
+  .ft-bottom{flex-direction:column;text-align:center}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .cta-inner{flex-direction:column;text-align:center}
+  .hero-mini{max-width:340px;margin:0 auto}
+}
+@media(max-width:480px){.why-grid{grid-template-columns:1fr}.stat-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+<div id="spb"></div>
+
+<a class="wa-float" href="https://wa.me/573154436504" target="_blank" rel="noopener" aria-label="WhatsApp Andergas">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<nav class="nav" id="nav">
+  <div class="nav-wrap">
+    <a href="#inicio" class="nav-logo">ANDER<span>GAS</span></a>
+    <ul class="nav-links">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#portafolio">Portafolio</a></li>
+      <li><a href="#equipo">Equipo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="tel:+573154436504" class="nav-cta">+57 315 443 65 04</a>
+    <button class="hamburger" id="hbg" aria-label="Menú"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-nav" id="mnav">
+  <a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a>
+  <a href="#portafolio">Portafolio</a><a href="#equipo">Equipo</a>
+  <a href="#contacto">Contacto</a><a href="tel:+573154436504">+57 315 443 65 04</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-grid"></div>
+  <div class="hero-scanlines"></div>
+  <canvas id="hero-canvas"></canvas>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Colombia · Desde 1983</div>
+      <h1 class="hero-title">Expertos en<br><span class="line2">Redes<br>Industriales</span></h1>
+      <p class="hero-sub">Instalación, diseño y mantenimiento de redes hidráulicas, gas y sistemas contra incendios. Personal certificado EPM y SENA.</p>
+      <div class="hero-btns">
+        <a href="#portafolio" class="btn btn-p"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>Ver portafolio</a>
+        <a href="#contacto" class="btn btn-s">Solicitar cotización</a>
+      </div>
+      <div class="hero-srv-row">
+        <div class="hero-srv"><span class="sdot sd-b"></span>Hidráulica</div>
+        <div class="hero-srv"><span class="sdot sd-o"></span>Gas</div>
+        <div class="hero-srv"><span class="sdot sd-r"></span>Contra Incendios</div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-big-stat rv-r">
+        <div class="hero-big-n"><span class="count" data-target="43">0</span>+</div>
+        <div class="hero-big-l">Años de experiencia</div>
+      </div>
+      <div class="hero-mini rv-r" data-d="2">
+        <div class="hms"><div class="hms-n">+<span class="count" data-target="1000">0</span></div><div class="hms-l">Proyectos</div></div>
+        <div class="hms"><div class="hms-n">Nacional</div><div class="hms-l">Cobertura</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section class="sec about" id="nosotros">
+  <div class="sec-deco">01</div>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="rv-l">
+        <span class="label">Sobre nosotros</span>
+        <h2 class="sec-title">Ingeniería especializada desde 1983</h2>
+        <p class="sec-desc">Andergas S.A.S es una empresa antioqueña con más de cuatro décadas de experiencia en instalación, diseño y mantenimiento de redes hidráulicas, redes de gas y sistemas contra incendios. Nos respalda un equipo técnico certificado comprometido con la calidad en cada obra.</p>
+        <div class="about-features">
+          <div class="af"><div class="af-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Personal certificado EPM y SENA</strong><span>Técnicos acreditados en instalaciones industriales, comerciales y residenciales</span></div></div>
+          <div class="af"><div class="af-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Atención integral</strong><span>Desde diseño e instalación hasta mantenimiento preventivo y correctivo</span></div></div>
+          <div class="af"><div class="af-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div><div><strong>Cobertura nacional</strong><span>Proyectos en Antioquia y todo el territorio colombiano</span></div></div>
+        </div>
+        <div class="cert-strip">
+          <div class="cert-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>EPM</div>
+          <div class="cert-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SENA</div>
+          <div class="cert-badge"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>SGS</div>
+        </div>
+      </div>
+      <div class="stat-grid rv-r">
+        <div class="stat-card rv" data-d="1"><div class="stat-n"><span class="count" data-target="43">0</span><span class="accent">+</span></div><div class="stat-l">Años de experiencia</div></div>
+        <div class="stat-card rv" data-d="2"><div class="stat-n"><span class="count" data-target="1000">0</span><span class="accent">+</span></div><div class="stat-l">Proyectos completados</div></div>
+        <div class="stat-card rv" data-d="3"><div class="stat-text">Nacional</div><div class="stat-l">Cobertura en Colombia</div></div>
+        <div class="stat-card rv" data-d="4"><div class="stat-n"><span class="count" data-target="3">0</span></div><div class="stat-l">Líneas de servicio</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENTES -->
+<div class="clients" id="clientes">
+  <div class="clients-label">Empresas que confían en Andergas</div>
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="mi-dot"></span>Postobón S.A.</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Almacenes Éxito</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Grupo Familia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Universidad de Antioquia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Hotel Marriott Medellín</div>
+      <div class="marquee-item"><span class="mi-dot"></span>C.C. El Tesoro</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Kimberly-Clark Colombia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>BH Hoteles</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Postobón S.A.</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Almacenes Éxito</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Grupo Familia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Universidad de Antioquia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Hotel Marriott Medellín</div>
+      <div class="marquee-item"><span class="mi-dot"></span>C.C. El Tesoro</div>
+      <div class="marquee-item"><span class="mi-dot"></span>Kimberly-Clark Colombia</div>
+      <div class="marquee-item"><span class="mi-dot"></span>BH Hoteles</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICIOS -->
+<section class="sec services" id="servicios">
+  <div class="sec-deco">02</div>
+  <div class="wrap">
+    <div class="srv-hdr"><span class="label rv">Nuestros servicios</span><h2 class="sec-title rv">Soluciones para cada red</h2><p class="sec-desc rv">Especialistas en diseño, instalación y mantenimiento de infraestructura de redes para proyectos residenciales, comerciales e industriales.</p></div>
+    <div class="srv-grid">
+      <div class="srv-card sc-b rv" data-d="1">
+        <span class="srv-ghost">H</span>
+        <div class="srv-ico ico-b"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0ea5e9" stroke-width="1.8"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+        <h3>Hidráulica</h3>
+        <p>Diseño e instalación de sistemas hidráulicos para abasto de agua potable y redes de alcantarillado con los más altos estándares técnicos.</p>
+        <ul class="srv-list"><li>Redes de abasto de agua potable</li><li>Sistemas de alcantarillado</li><li>Instalaciones sanitarias interiores</li><li>Diagnóstico y reparación de fugas</li><li>Mantenimiento preventivo y correctivo</li></ul>
+        <p class="srv-norm">Cumplimiento NTC 1500 · RAS 2000</p>
+      </div>
+      <div class="srv-card sc-o rv" data-d="2">
+        <span class="srv-ghost">G</span>
+        <div class="srv-ico ico-o"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ff5c00" stroke-width="1.8"><path d="M12 2s-5 5.5-5 9.5a5 5 0 0010 0C17 7.5 12 2 12 2z"/><line x1="12" y1="16" x2="12" y2="20"/><line x1="9" y1="20" x2="15" y2="20"/></svg></div>
+        <h3>Gas</h3>
+        <p>Diseño e instalación de redes de gas cumpliendo normativa vigente. Conexiones residenciales, comerciales e industriales con total seguridad.</p>
+        <ul class="srv-list"><li>Diseño de redes de gas natural y GLP</li><li>Instalaciones residenciales y comerciales</li><li>Redes de distribución industrial</li><li>Pruebas de hermeticidad y certificación</li><li>Mantenimiento y revisiones periódicas</li></ul>
+        <p class="srv-norm">Certificación EPM · NTC 3728 · NTC 2505</p>
+      </div>
+      <div class="srv-card sc-r rv" data-d="3">
+        <span class="srv-ghost">F</span>
+        <div class="srv-ico ico-r"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+        <h3>Contra Incendios</h3>
+        <p>Sistemas de protección contra incendios diseñados e instalados según normativas NFPA para proteger vidas y activos de forma efectiva.</p>
+        <ul class="srv-list"><li>Sistemas de rociadores automáticos</li><li>Redes de hidrantes y gabinetes</li><li>Sistemas de detección y alarma</li><li>Extinción por agente limpio</li><li>Inspección y mantenimiento periódico</li></ul>
+        <p class="srv-norm">Cumplimiento NFPA 13 · NFPA 14 · NFPA 72</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTAFOLIO -->
+<section class="sec portfolio" id="portafolio">
+  <div class="sec-deco">03</div>
+  <div class="wrap">
+    <div class="port-hdr"><span class="label rv">Portafolio</span><h2 class="sec-title rv">Proyectos destacados</h2><p class="sec-desc rv">Más de 1.000 proyectos ejecutados en todo el país. Pasa el mouse sobre cada tarjeta para ver los detalles.</p></div>
+    <div class="port-grid">
+
+      <div class="port-card rv" data-d="1">
+        <div class="port-visual pv-1"><div class="port-num">01</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div class="port-year">2018</div></div>
+        <div class="port-body"><h4>Hotel Marriott Medellín</h4><p>Redes hidráulicas y de gas para una de las cadenas hoteleras más exigentes del mundo.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span></div></div>
+        <div class="port-overlay"><h4>Hotel Marriott Medellín</h4><p>Instalación completa de redes hidráulicas y de gas. Proyecto de alta exigencia técnica ejecutado en 2018 en Medellín.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span></div></div>
+      </div>
+
+      <div class="port-card rv" data-d="2">
+        <div class="port-visual pv-2"><div class="port-num">02</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="port-year">2010</div></div>
+        <div class="port-body"><h4>C.C. El Tesoro</h4><p>Sistema completo contra incendios para el centro comercial más emblemático del oriente de Medellín.</p><div class="port-tags"><span class="port-tag pt-r">Contra Incendios</span></div></div>
+        <div class="port-overlay"><h4>C.C. El Tesoro</h4><p>Diseño e instalación del sistema completo contra incendios. Cumplimiento total de normas NFPA 13 y NFPA 14.</p><div class="port-tags"><span class="port-tag pt-r">Contra Incendios</span></div></div>
+      </div>
+
+      <div class="port-card rv" data-d="3">
+        <div class="port-visual pv-3"><div class="port-num">03</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div class="port-year">2011</div></div>
+        <div class="port-body"><h4>Hotel BH – Locatel El Poblado</h4><p>Proyecto integral con las tres líneas de servicio Andergas en El Poblado.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span><span class="port-tag pt-r">Contra Incendios</span></div></div>
+        <div class="port-overlay"><h4>Hotel BH – Locatel El Poblado</h4><p>Proyecto integral con las tres líneas Andergas. Ejemplo de capacidad técnica completa en un solo cliente.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span><span class="port-tag pt-r">Contra Incendios</span></div></div>
+      </div>
+
+      <div class="port-card rv" data-d="4">
+        <div class="port-visual pv-4"><div class="port-num">04</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="port-year">2017</div></div>
+        <div class="port-body"><h4>Colpapel S.A. Kimberly-Clark</h4><p>Sistema contra incendios para las instalaciones industriales de Kimberly-Clark Colombia.</p><div class="port-tags"><span class="port-tag pt-r">Contra Incendios</span></div></div>
+        <div class="port-overlay"><h4>Colpapel S.A. Kimberly-Clark</h4><p>Diseño e instalación para planta industrial Kimberly-Clark. Alta exigencia normativa industrial cumplida al 100%.</p><div class="port-tags"><span class="port-tag pt-r">Contra Incendios</span></div></div>
+      </div>
+
+      <div class="port-card rv" data-d="5">
+        <div class="port-visual pv-5"><div class="port-num">05</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="port-year">2015</div></div>
+        <div class="port-body"><h4>Torres Diamante I y II</h4><p>Redes hidráulicas y de gas para dos torres residenciales de alta gama en Medellín.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span></div></div>
+        <div class="port-overlay"><h4>Torres Diamante I y II</h4><p>Instalación de redes hidráulicas y de gas para dos torres de alta gama. Proyecto ejecutado entre 2014 y 2015.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-o">Gas</span></div></div>
+      </div>
+
+      <div class="port-card rv" data-d="6">
+        <div class="port-visual pv-6"><div class="port-num">06</div><div class="port-icon"><svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="1.3"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div><div class="port-year">2017</div></div>
+        <div class="port-body"><h4>Altos del Progreso</h4><p>Redes hidráulicas y sistema contra incendios para proyecto de vivienda VIS en Antioquia.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-r">Contra Incendios</span></div></div>
+        <div class="port-overlay"><h4>Altos del Progreso</h4><p>Redes hidráulicas y contra incendios para vivienda VIS. Versatilidad Andergas en todos los segmentos del mercado.</p><div class="port-tags"><span class="port-tag pt-b">Hidráulica</span><span class="port-tag pt-r">Contra Incendios</span></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div class="cta-text"><span class="label">¿Listo para comenzar?</span><h2>Tu proyecto merece<br>los mejores.</h2></div>
+    <a href="#contacto" class="btn-cta">Solicitar cotización <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg></a>
+  </div>
+</div>
+
+<!-- POR QUÉ -->
+<section class="sec why" id="por-que">
+  <div class="sec-deco">04</div>
+  <div class="wrap">
+    <div class="why-hdr"><span class="label rv">Por qué elegirnos</span><h2 class="sec-title rv">El compromiso Andergas</h2><p class="sec-desc rv">Cuatro décadas construyendo confianza. Estas son las razones por las que nuestros clientes nos eligen proyecto tras proyecto.</p></div>
+    <div class="why-grid">
+      <div class="why-card rv" data-d="1"><div class="why-num">01</div><div class="why-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><h4>Personal Certificado</h4><p>Técnicos con certificación EPM, SENA y SGS. Experiencia comprobada en cada área de instalación.</p></div>
+      <div class="why-card rv" data-d="2"><div class="why-num">02</div><div class="why-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h4>Precios Competitivos</h4><p>Tarifas accesibles sin sacrificar la calidad de materiales ni la mano de obra especializada.</p></div>
+      <div class="why-card rv" data-d="3"><div class="why-num">03</div><div class="why-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h4>Disponibilidad Permanente</h4><p>Atención lunes a sábado para mantenimientos, reformas y emergencias en todo el país.</p></div>
+      <div class="why-card rv" data-d="4"><div class="why-num">04</div><div class="why-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h4>Calidad Garantizada</h4><p>Todos nuestros proyectos cumplen normativa vigente y cuentan con garantía de servicio y materiales.</p></div>
+    </div>
+    <div class="why-cert-row rv">
+      <div class="why-cert"><div class="wcd"></div>Certificado EPM</div>
+      <div class="why-cert"><div class="wcd"></div>Certificado SENA</div>
+      <div class="why-cert"><div class="wcd"></div>Certificado SGS</div>
+      <div class="why-cert"><div class="wcd"></div>+43 años en el mercado</div>
+      <div class="why-cert"><div class="wcd"></div>+1.000 proyectos</div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPO -->
+<section class="sec team" id="equipo">
+  <div class="sec-deco">05</div>
+  <div class="wrap">
+    <div class="team-hdr rv"><span class="label">Equipo</span><h2 class="sec-title">Las personas detrás de cada obra</h2><p class="sec-desc">Un equipo con décadas de experiencia y pasión por el trabajo bien hecho.</p></div>
+    <div class="team-grid">
+      <div class="team-card rv" data-d="1">
+        <div class="team-avatar">JA</div>
+        <h4>Jorge Alberto Arroyave Uribe</h4>
+        <div class="team-role">Contratista — Fundador</div>
+        <div class="team-contacts">
+          <div class="team-contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12.1 19.36 19.36 0 011.64 3.5 2 2 0 013.62 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 9a16 16 0 006 6l.94-.94a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+573154436504">+57 315 443 65 04</a></div>
+          <div class="team-contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:andergas.sas@gmail.com">andergas.sas@gmail.com</a></div>
+        </div>
+      </div>
+      <div class="team-card rv" data-d="2">
+        <div class="team-avatar">JH</div>
+        <h4>Jhon Anderson Arroyave Durango</h4>
+        <div class="team-role">Arquitecto</div>
+        <div class="team-contacts">
+          <div class="team-contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12.1 19.36 19.36 0 011.64 3.5 2 2 0 013.62 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 9a16 16 0 006 6l.94-.94a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg><a href="tel:+573147881364">+57 314 788 13 64</a></div>
+          <div class="team-contact"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:onderson@outlook.com">onderson@outlook.com</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="sec testimonials" id="testimonios">
+  <div class="wrap">
+    <div class="test-hdr rv"><span class="label">Testimonios</span><h2 class="sec-title">Lo que dicen nuestros clientes</h2><p class="sec-desc">La confianza de quienes nos han elegido es nuestro mayor aval. En breve compartiremos sus palabras aquí.</p></div>
+    <div class="test-grid">
+      <div class="test-card rv" data-d="1"><div class="test-pill">Próximamente</div><div class="test-quote"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div><p class="test-text">Testimonio pendiente — el cliente enviará su reseña próximamente.</p><div class="test-author"><div class="test-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,92,0,.3)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="test-name">— Pendiente —</div><div class="test-company">Empresa / Proyecto</div></div></div></div>
+      <div class="test-card rv" data-d="2"><div class="test-pill">Próximamente</div><div class="test-quote"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div><p class="test-text">Testimonio pendiente — el cliente enviará su reseña próximamente.</p><div class="test-author"><div class="test-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,92,0,.3)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="test-name">— Pendiente —</div><div class="test-company">Empresa / Proyecto</div></div></div></div>
+      <div class="test-card rv" data-d="3"><div class="test-pill">Próximamente</div><div class="test-quote"><svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg></div><p class="test-text">Testimonio pendiente — el cliente enviará su reseña próximamente.</p><div class="test-author"><div class="test-avatar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,92,0,.3)" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><div class="test-name">— Pendiente —</div><div class="test-company">Empresa / Proyecto</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="sec contact" id="contacto">
+  <div class="sec-deco">06</div>
+  <div class="wrap">
+    <div class="ct-grid">
+      <div class="ct-info">
+        <div class="rv"><span class="label">Contacto</span><h2 class="sec-title">Hablemos de<br>tu proyecto</h2><p class="sec-desc">¿Necesitas instalar, diseñar o dar mantenimiento a una red? Un técnico te asesorará sin compromiso.</p></div>
+        <div class="ct-item rv" data-d="1"><div class="ct-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12.1 19.36 19.36 0 011.64 3.5 2 2 0 013.62 1.32h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 9a16 16 0 006 6l.94-.94a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg></div><div><strong>Teléfono</strong><a href="tel:+573154436504">+57 315 443 65 04</a></div></div>
+        <div class="ct-item rv" data-d="2"><div class="ct-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><strong>Email</strong><a href="mailto:andergas.sas@gmail.com">andergas.sas@gmail.com</a></div></div>
+        <div class="ct-item rv" data-d="3"><div class="ct-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><strong>Dirección</strong><span>Cra. 92C N° 32-63 / Int. 101, Medellín</span></div></div>
+        <div class="ct-item rv" data-d="4"><div class="ct-ico"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><strong>Horario</strong><span>Lunes a sábado, 7:30 am – 5:00 pm</span></div></div>
+        <div class="ct-item rv" data-d="5"><div class="ct-ico" style="background:rgba(225,48,108,.07);border-color:rgba(225,48,108,.16);color:#e1306c"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></div><div><strong>Instagram</strong><a href="https://www.instagram.com/andergas_sas/" target="_blank" rel="noopener">@andergas_sas</a></div></div>
+      </div>
+      <div class="ct-form rv-r">
+        <div class="form-title">Solicita información</div>
+        <form onsubmit="sendForm(event)">
+          <div class="form-row"><div class="fg"><label>Nombre *</label><input type="text" placeholder="Tu nombre completo" required></div><div class="fg"><label>Teléfono *</label><input type="tel" placeholder="300 123 4567" required></div></div>
+          <div class="fg"><label>Email</label><input type="email" placeholder="tucorreo@ejemplo.com"></div>
+          <div class="fg"><label>Servicio de interés</label><select><option value="">Selecciona un servicio</option><option>Redes Hidráulicas</option><option>Redes de Gas</option><option>Red Contra Incendio</option><option>Mantenimiento</option><option>Otro / Consulta general</option></select></div>
+          <div class="fg"><label>Mensaje</label><textarea placeholder="Cuéntanos sobre tu proyecto o necesidad…"></textarea></div>
+          <button type="submit" class="form-btn" id="formBtn">Enviar mensaje →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="ft-wrap">
+    <div class="ft-top">
+      <div class="ft-brand"><a href="#inicio" class="nav-logo">ANDER<span>GAS</span></a><p>Especialistas en instalación, diseño y mantenimiento de redes hidráulicas, gas y contra incendios en Colombia desde 1983.</p></div>
+      <div class="ft-col"><h5>Servicios</h5><ul><li><a href="#servicios">Redes Hidráulicas</a></li><li><a href="#servicios">Redes de Gas</a></li><li><a href="#servicios">Contra Incendios</a></li><li><a href="#servicios">Mantenimiento</a></li></ul></div>
+      <div class="ft-col"><h5>Empresa</h5><ul><li><a href="#nosotros">Nosotros</a></li><li><a href="#portafolio">Portafolio</a></li><li><a href="#equipo">Equipo</a></li><li><a href="https://www.instagram.com/andergas_sas/" target="_blank">Instagram</a></li></ul></div>
+      <div class="ft-col"><h5>Contacto</h5><ul><li><a href="tel:+573154436504">+57 315 443 65 04</a></li><li><a href="mailto:andergas.sas@gmail.com" style="font-size:12px">andergas.sas@gmail.com</a></li><li><span style="font-size:12px;color:var(--muted)">Cra. 92C N° 32-63 / Int. 101<br>Medellín, Antioquia</span></li><li><span style="font-size:12px;color:var(--muted)">Lun–Sáb: 7:30 am–5:00 pm</span></li></ul></div>
+    </div>
+    <div class="ft-bottom"><p>© 2026 <a href="#inicio">Andergas S.A.S</a> — Todos los derechos reservados.</p><p>Web: <a href="https://www.andergas.com.co" target="_blank">andergas.com.co</a></p></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const c=document.getElementById('hero-canvas');if(!c)return;
+  const ctx=c.getContext('2d');let w,h,pts;
+  const N=55,D=140,S=0.32;
+  function resize(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight}
+  function init(){pts=Array.from({length:N},()=>({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*S,vy:(Math.random()-.5)*S,r:Math.random()*1.6+.7}))}
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    for(let p of pts){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1}
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.hypot(dx,dy);if(dist<D){const al=(1-dist/D)*.4;ctx.beginPath();ctx.strokeStyle=`rgba(255,92,0,${al})`;ctx.lineWidth=.6;ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}
+      const p=pts[i];ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(255,92,0,.6)';ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize();init();draw();
+  window.addEventListener('resize',()=>{resize();init()});
+})();
+
+const nav=document.getElementById('nav'),spb=document.getElementById('spb');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+  spb.style.width=((scrollY/(document.body.scrollHeight-window.innerHeight))*100)+'%';
+},{passive:true});
+
+const hbg=document.getElementById('hbg'),mnav=document.getElementById('mnav');
+hbg.addEventListener('click',()=>mnav.classList.toggle('open'));
+mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mnav.classList.remove('open')));
+
+const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')})},{threshold:.1,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(el=>ro.observe(el));
+
+function animCount(el,target,dur=1800){
+  const start=performance.now();
+  (function run(now){const p=Math.min((now-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*target);if(p<1)requestAnimationFrame(run)})(performance.now());
+}
+const co=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const t=parseInt(e.target.dataset.target);if(!isNaN(t))animCount(e.target,t);co.unobserve(e.target)}})},{threshold:.5});
+document.querySelectorAll('.count').forEach(el=>co.observe(el));
+
+function sendForm(e){e.preventDefault();const btn=document.getElementById('formBtn');btn.textContent='✓ Mensaje enviado';btn.style.background='#22c55e';setTimeout(()=>{btn.textContent='Enviar mensaje →';btn.style.background='';e.target.reset()},3000)}
+</script>
+</body>
+</html>

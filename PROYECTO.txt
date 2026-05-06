@@ -1,0 +1,44 @@
+ANDERGAS S.A.S — SITIO WEB PROPUESTA
+======================================
+Versión: 1.0  |  Fecha: Mayo 2026
+
+ESTRUCTURA DEL PROYECTO
+------------------------
+andergas/
+├── index.html              ← Abrir en navegador para ver el sitio
+└── assets/
+    ├── INSTRUCCIONES-FOTOS.txt
+    └── (aquí van las fotos del portafolio)
+
+CÓMO VER EL SITIO
+------------------
+Doble clic sobre index.html → se abre en el navegador.
+No necesita servidor ni instalación.
+
+PENDIENTES DEL CLIENTE
+-----------------------
+[ ] Fotos de proyectos (ver assets/INSTRUCCIONES-FOTOS.txt)
+[ ] Testimonios de clientes (3 reseñas)
+[ ] Logo en formato PNG o SVG (para reemplazar texto ANDERGAS)
+[ ] Certificados digitales (EPM, SENA, SGS) si se quieren mostrar
+[ ] Confirmar año de fundación (actualmente: 1983 → 43 años)
+
+SECCIONES DEL SITIO
+--------------------
+01  Hero          — Titular principal + estadísticas animadas
+02  Nosotros      — Historia + certificaciones + stats
+03  Clientes      — Marquee de empresas
+04  Servicios     — Hidráulica / Gas / Contra Incendios
+05  Portafolio    — 6 proyectos destacados (foto-ready)
+06  CTA Band      — Llamada a la acción naranja
+07  Por qué       — 4 razones para elegir Andergas
+08  Equipo        — Jorge & Jhon Anderson
+09  Testimonios   — 3 slots (pendiente contenido)
+10  Contacto      — Formulario + datos de contacto
+11  Footer
+
+TECNOLOGÍA
+----------
+HTML5 + CSS3 + JavaScript vanilla.
+Fuentes: Bebas Neue + Space Grotesk (Google Fonts).
+Sin frameworks. Abre en cualquier navegador moderno.
